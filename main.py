@@ -27,7 +27,8 @@ def removeGrocery():
         print('item not in list')
 
 def exportList():
-    print('wip')
+    with open(listFile, 'w') as f:
+        f.write('\n'.join(list))
 
 def importList():
     with open('list.txt', 'r') as f:
@@ -43,18 +44,24 @@ def clearList():
     return 0
 
 def recoverList():
-    whichList = input('which list? autosave or backup? ')
-    if whichList == 'autosave':
-        eitherList = listBackup
-    elif whichList == 'backup':
-        eitherList = list
-    for item in eitherList:
+    for item in listBackup:
         list.append(item)
     return 0
 
 def quitProgram():
-    print('autosave work in progress')
+    print('autosaving.', end='')
+    listAutosave.clear()
+    for item in list:
+        listAutosave.append(item)
+    print('.', end='')
+    with open(autoSaveFile, 'w') as f:
+        f.write('\n'.join(listAutosave))
+    print('.')
     quit()
+
+def loadAutosave():
+    for item in listAutosave:
+        list.append(item)
 
 while True:
     for i in range(10):
@@ -87,3 +94,6 @@ while True:
 
         case "recover":
             recoverList()
+
+        case "load":
+            loadAutosave()

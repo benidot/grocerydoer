@@ -30,7 +30,8 @@ def importList():
         state.listBuffer = f.read().splitlines()
 
     for item in state.listBuffer:
-        state.groceryList.append(item)
+        if item not in state.groceryList:
+            state.groceryList.append(item)
     printer()
 
 def clearList():
@@ -68,7 +69,8 @@ def quitProgram():
 
 def loadAutosave():
     for item in state.listAutosave:
-        state.groceryList.append(item)
+        if item not in state.groceryList:
+            state.groceryList.append(item)
     printer()
 
 def ticker():
@@ -78,6 +80,24 @@ def ticker():
         state.groceryList.append(f'[x] {item}')
     return 0
     printer()
+
+def unticker():
+    while True:
+        item = input('in untick mode. type item or leave empty to quit: ')
+        if item in state.groceryList:
+            if item.startswith('[x] '):
+                state.groceryList.remove(item)
+                state.groceryList.append(item[4:])
+            else:
+                print('not ticked')
+                return
+        elif item == '':
+            printer()
+            return
+        else:
+            print('not found')
+            return
+        state.groceryList.append(item)
 
 def printer():
     printEmpty()
@@ -103,3 +123,4 @@ def helpPrinter():
     print('recover: recover list from auto-backup')
     print('load: load autosave')
     print('tick: tick item')
+    print('untick: untick in bulk')

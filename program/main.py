@@ -12,6 +12,7 @@ commandlist = {
     'recover': gdComms.recoverList,
     'load': gdComms.loadAutosave,
     'tick': gdComms.ticker,
+    'untick': gdComms.unticker,
     'help': gdComms.helpPrinter
 }
 

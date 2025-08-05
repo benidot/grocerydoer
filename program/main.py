@@ -1,5 +1,4 @@
 import gdComms
-import state
 
 commandlist = {
     'quit': gdComms.quitProgram,

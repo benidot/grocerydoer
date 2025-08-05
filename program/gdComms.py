@@ -78,8 +78,8 @@ def ticker():
     if item in state.groceryList:
         state.groceryList.remove(item)
         state.groceryList.append(f'[x] {item}')
-    return 0
     printer()
+    return 0
 
 def unticker():
     while True:
@@ -95,6 +95,7 @@ def unticker():
         else:
             print('not found')
             return
+        printer()
         state.groceryList.append(item)
 
 def printer():

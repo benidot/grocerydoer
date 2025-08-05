@@ -84,16 +84,14 @@ def ticker():
 def unticker():
     while True:
         item = input('in untick mode. type item or leave empty to quit: ')
-        if item in state.groceryList:
-            if item.startswith('[x] '):
-                state.groceryList.remove(item)
-                state.groceryList.append(item[4:])
-            else:
-                print('not ticked')
-                return
-        elif item == '':
+        if item == '':
             printer()
             return
+        item = "[x] " + item
+        if item in state.groceryList:
+            state.groceryList.remove(item)
+            splitted = item.split('[x] ')
+            item = splitted[1]
         else:
             print('not found')
             return

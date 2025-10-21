@@ -1,1 +1,5 @@
+[x] testing multiple strings
 juice
+rice
+beans
+more juice

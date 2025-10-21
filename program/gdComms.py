@@ -1,5 +1,4 @@
 import state
-import time
 
 
 def addGrocery():
@@ -12,12 +11,14 @@ def addGrocery():
             printer()
             return
         state.groceryList.append(item)
+        state.groceryList.sort()
 
 
 def removeGrocery():
     item = input("item: ")
     if item in state.groceryList:
         state.groceryList.remove(item)
+        state.groceryList.sort()
         return
     else:
         print("item not in list")
@@ -37,23 +38,25 @@ def importList():
     for item in state.listBuffer:
         if item not in state.groceryList:
             state.groceryList.append(item)
+        state.groceryList.sort()
     printer()
 
 
 def clearList():
     for item in state.groceryList[:]:
-        if "[x] " in item:
-            state.groceryList.remove(item)
+        state.tickedList.clear()
         state.listBackup.append(item)
-    return 0
     printer()
 
 
 def wipeList():
+    isS = input("confirm y/n ")
+    if isS != "y":
+        return
     for item in state.groceryList[:]:
         state.listBackup.append(item)
     state.groceryList.clear()
-    return 0
+    state.tickedList.clear()
     printer()
 
 
@@ -61,7 +64,6 @@ def recoverList():
     for item in state.listBackup:
         if item not in state.groceryList:
             state.groceryList.append(item)
-    return 0
     printer()
 
 
@@ -88,9 +90,8 @@ def ticker():
     item = input("item: ")
     if item in state.groceryList:
         state.groceryList.remove(item)
-        state.groceryList.append(f"[x] {item}")
+        state.tickedList.append(f"[x] {item}")
     printer()
-    return 0
 
 
 def unticker():
@@ -100,15 +101,16 @@ def unticker():
             printer()
             return
         item = "[x] " + item
-        if item in state.groceryList:
-            state.groceryList.remove(item)
+        if item in state.tickedList:
+            state.tickedList.remove(item)
             splitted = item.split("[x] ")
             item = splitted[1]
         else:
             print("not found")
             return
-        printer()
         state.groceryList.append(item)
+        printer()
+        return
 
 
 def printer():
@@ -122,8 +124,12 @@ def printEmpty():
 
 
 def printList():
-    for item in state.groceryList:
-        print(item)
+    for index, item in enumerate(state.groceryList):
+        print(f"{index + 1} - {item}")
+    if len(state.tickedList) > 0:
+        print("\nticked: ")
+        for index, item in enumerate(state.tickedList):
+            print(f"{index + 1} - {item}")
 
 
 def helpPrinter():

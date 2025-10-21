@@ -1,5 +1,3 @@
-[x] testing multiple strings
+beans
 juice
 rice
-beans
-more juice

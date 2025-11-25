@@ -1,3 +1,2 @@
-beans
-juice
-rice
+explicit
+splendid

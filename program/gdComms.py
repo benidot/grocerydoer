@@ -1,5 +1,5 @@
 import state
-
+import os
 
 def addGrocery():
     while True:
@@ -119,8 +119,7 @@ def printer():
 
 
 def printEmpty():
-    for i in range(11):
-        print()
+    os.system('cls||clear')
 
 
 def printList():

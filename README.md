@@ -1,8 +1,14 @@
 # grocerydoer
+grocerydoer is a Python-based grocery list terminal program built for speed, feature intuitiveness and simplicity. gui version tba.
 
-grocerydoer is a Python-based grocery list terminal program built for speed, feature intuitiveness and simplicity. when i am able to a graphical interface shall be made.
+tested on linux and macos. i have no windows devices to test it on
 
-## how to use
+
+## usage
+```bash
+python3 ./program/main.py
+```
+
 available commands:
 ```
 - help: show command list
